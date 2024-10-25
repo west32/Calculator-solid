@@ -9,7 +9,7 @@ package io.bartek.cat;public class CalculatorStart {
     public void startCalculator() {
         String decision = "";
         while (!decision.equals("x")) {
-            userInterface.printMessage("choose '+' to sum, '-' to substract, 'x' to abort");
+            userInterface.printMessage("choose '+' to sum, '-' to substract, 's' to count square from single number 'x' to abort");
             decision = userInterface.getUserInput();
 
             if(!decision.equals("x")) {
