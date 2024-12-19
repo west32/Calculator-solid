@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class UserInterface {
     Scanner scanner = new Scanner(System.in);
     public void printResult(int result) {
-        System.out.println("Wynik: " + result);
+        System.out.println("Result: " + result);
     }
 
     public void printMessage(String message) {
