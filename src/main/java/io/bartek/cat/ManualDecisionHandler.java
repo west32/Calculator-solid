@@ -1,13 +1,20 @@
 package io.bartek.cat;
 
-import java.util.Scanner;
-
-public class CalculatorDecisionHandler {
+public class ManualDecisionHandler {
 
     private final UserInterface userInterface;
 
-    public CalculatorDecisionHandler(UserInterface userInterface) {
+    public ManualDecisionHandler(UserInterface userInterface) {
         this.userInterface = userInterface;
+    }
+
+    public String getOperatorDecision() {
+        String decision = "";
+        while (!decision.equals("x")) {
+            userInterface.printMessage("choose '+' to sum, '-' to substract, 's' to count square from single number 'x' to abort");
+            decision = userInterface.getUserInput();
+            }
+        return decision;
     }
 
     public void handeDecision(String decision) {

@@ -1,19 +1,22 @@
 package io.bartek.cat;public class CalculatorStart {
-    private final CalculatorDecisionHandler calculatorDecisionHandler;
+    private final PathDecisionHandler pathDecisionHandler
+    private final ManualDecisionHandler manualDecisionHandler;
     private final UserInterface userInterface;
 
-    public CalculatorStart(CalculatorDecisionHandler calculatorDecisionHandler, UserInterface userInterface) {
-        this.calculatorDecisionHandler = calculatorDecisionHandler;
+    public CalculatorStart(ManualDecisionHandler calculatorDecisionHandler, UserInterface userInterface) {
+        this.manualDecisionHandler = calculatorDecisionHandler;
         this.userInterface = userInterface;
     }
     public void startCalculator() {
         String decision = "";
-        while (!decision.equals("x")) {
-            userInterface.printMessage("choose '+' to sum, '-' to substract, 's' to count square from single number 'x' to abort");
-            decision = userInterface.getUserInput();
 
-            if(!decision.equals("x")) {
-                calculatorDecisionHandler.handeDecision(decision);
+        String operatorDecision = manualDecisionHandler.getOperatorDecision();
+
+        while (!decision.equals("x")) {
+            String pathDecision = pathDecisionHandler.getPathDecision();
+            decision = pathDecision;
+            if(pathDecision.equals("file"))
+                FileDecisionHandler.handleDecision();
             }
         }
         userInterface.printMessage("calculator has stopped working");
