@@ -1,16 +1,14 @@
 package io.bartek.cat;
 
-import java.io.IOException;
-
 public class CalculatorStart {
     private PathDecisionHandler pathDecisionHandler;
     private final ManualDecisionHandler manualDecisionHandler;
     private UserInterface userInterface;
-    private final FileInputReader fileInputReader;
+    private final FileInputLoader fileInputReader;
 
-    private  final FileDecisionHandler fileDecisionHandler;
+    private  final DecisionForOperationHandler fileDecisionHandler;
 
-    public CalculatorStart(PathDecisionHandler pathDecisionHandler, ManualDecisionHandler calculatorDecisionHandler, UserInterface userInterface, FileInputReader fileInputReader, FileDecisionHandler fileDecisionHandler) {
+    public CalculatorStart(PathDecisionHandler pathDecisionHandler, ManualDecisionHandler calculatorDecisionHandler, UserInterface userInterface, FileInputLoader fileInputReader, DecisionForOperationHandler fileDecisionHandler) {
         this.pathDecisionHandler = pathDecisionHandler;
         this.manualDecisionHandler = calculatorDecisionHandler;
         this.userInterface = userInterface;

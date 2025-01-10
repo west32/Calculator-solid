@@ -1,14 +1,12 @@
 package io.bartek.cat;
 
-import java.io.IOException;
-
 public class Main {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         UserInterface userInterface = new UserInterface();
         ManualDecisionHandler manualDecisionHandler = new ManualDecisionHandler(userInterface);
         PathDecisionHandler pathDecisionHandler = new PathDecisionHandler(userInterface);
-        FileInputReader fileInputReader = new FileInputReader();
-        FileDecisionHandler fileDecisionHandler = new FileDecisionHandler(fileInputReader, userInterface);
+        FileInputLoader fileInputReader = new FileInputLoader(userInterface);
+        DecisionForOperationHandler fileDecisionHandler = new DecisionForOperationHandler(fileInputReader, userInterface);
         CalculatorStart start = new CalculatorStart(pathDecisionHandler, manualDecisionHandler, userInterface, fileInputReader, fileDecisionHandler);
         start.startCalculator();
     }
