@@ -1,19 +1,32 @@
-package io.bartek.cat;public class CalculatorStart {
-    private final CalculatorDecisionHandler calculatorDecisionHandler;
-    private final UserInterface userInterface;
+package io.bartek.cat;
 
-    public CalculatorStart(CalculatorDecisionHandler calculatorDecisionHandler, UserInterface userInterface) {
-        this.calculatorDecisionHandler = calculatorDecisionHandler;
+public class CalculatorStart {
+    private PathDecisionHandler pathDecisionHandler;
+    private final ManualDecisionHandler manualDecisionHandler;
+    private UserInterface userInterface;
+    private final FileInputLoader fileInputReader;
+
+    private  final DecisionForOperationHandler fileDecisionHandler;
+
+    public CalculatorStart(PathDecisionHandler pathDecisionHandler, ManualDecisionHandler calculatorDecisionHandler, UserInterface userInterface, FileInputLoader fileInputReader, DecisionForOperationHandler fileDecisionHandler) {
+        this.pathDecisionHandler = pathDecisionHandler;
+        this.manualDecisionHandler = calculatorDecisionHandler;
         this.userInterface = userInterface;
+        this.fileInputReader = fileInputReader;
+        this.fileDecisionHandler = fileDecisionHandler;
     }
-    public void startCalculator() {
+
+    public void startCalculator()  {
         String decision = "";
         while (!decision.equals("x")) {
-            userInterface.printMessage("choose '+' to sum, '-' to substract, 's' to count square from single number 'x' to abort");
-            decision = userInterface.getUserInput();
+            String pathDecision = pathDecisionHandler.getPathDecision();
+            decision = pathDecision;
+            if (pathDecision.equals("file")){
+                fileDecisionHandler.handleDecision();
+            }else if (pathDecision.equals("manual")) {
+                decision = manualDecisionHandler.getOperatorDecision();
+                manualDecisionHandler.handeDecision(decision);
 
-            if(!decision.equals("x")) {
-                calculatorDecisionHandler.handeDecision(decision);
             }
         }
         userInterface.printMessage("calculator has stopped working");

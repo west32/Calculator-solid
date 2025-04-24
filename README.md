@@ -1,0 +1,1 @@
+feat/fix/break: <task-name> - <change-description> #szablon commit coment
